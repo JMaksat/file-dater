@@ -15,7 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Creates frame and set its properties.
+ * Creates frame with two lists.
  * 
  * @author Maksat E.
  */
@@ -62,7 +62,7 @@ public class ChooseForm extends JDialog {
 		this.setModalityType(DEFAULT_MODALITY_TYPE);
 		this.setLocationRelativeTo(null);
 		
-				
+		// Fulfilling read of the directory tree		
 		try {
 			DirectoryHandle.cleanArrays();
 			FileListingVisitor.runFileListingVisitor(DirectoryHandle.getPath().toString());
@@ -74,6 +74,7 @@ public class ChooseForm extends JDialog {
 			System.exit(0);
 		}
 		
+		// Filling lists using data of file
 		for (int i = 0; i <= DirectoryHandle.getFilesNumber(); i++) {
 			
 			if (DirectoryHandle.getFileName(i).toString().toLowerCase().endsWith(".jpg") && MainForm.isJPG) {
@@ -98,6 +99,7 @@ public class ChooseForm extends JDialog {
 			}				
 		}
 		
+		// Left list
 		leftList = new JList<>(modelList);
 		leftList.setVisibleRowCount(VISIBLE_ROW_COUNT);
 		leftList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
@@ -114,6 +116,7 @@ public class ChooseForm extends JDialog {
 		leftLabel.setEnabled(true);
 		cPanel.add(leftLabel);	    
 	    
+		// Transfer buttons
 		toLeftButton = new JButton(">");
 		toLeftButton.setBounds(290, 120, 65, 32);
 		toLeftButton.setEnabled(true);
@@ -134,6 +137,7 @@ public class ChooseForm extends JDialog {
 		allRightButton.setEnabled(true);
 		cPanel.add(allRightButton);
 		
+		// Right list
 		rightLabel = new JLabel("Will be renamed:");
 		rightLabel.setBounds(370, 0, 260, 32);
 		rightLabel.setEnabled(true);
@@ -150,6 +154,7 @@ public class ChooseForm extends JDialog {
 	    rightScrollPane.setBounds(365, 25, 265, 350);
 	    cPanel.add(rightScrollPane);
 	    
+	    // Control buttons
 		cancelButton = new JButton("Cancel");
 		cancelButton.setBounds(440, 395, 85, 32);
 		cancelButton.setEnabled(true);
@@ -160,6 +165,7 @@ public class ChooseForm extends JDialog {
 		okButton.setEnabled(false);
 		cPanel.add(okButton);		
 		
+		// Handling actions of controls.
 		toLeftButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				List<String> selected = leftList.getSelectedValuesList();

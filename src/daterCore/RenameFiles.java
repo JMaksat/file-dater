@@ -4,7 +4,7 @@ import java.io.File;
 import javax.swing.JOptionPane;
 
 /**
- * Creates frame and set its properties.
+ * Renaming the files.
  * 
  * @author Maksat E.
  */
@@ -27,18 +27,21 @@ public class RenameFiles {
 	    	
 	        public void run() {
 	  	        for (int i = 0; i < chf.getFilesNumber(); i++) {
+	  	        	// Stop button was pressed.
 	  	        	if (prg.isStop()) {
 	  	        		prg.dispose();
 	  	        		break;
 	  	        	}
 		    	    soleFile = new File(chf.getFileName(i));
 		    	    
+		    	    // Making file name on chosen method.
 		    	    if (MainForm.nameMethods[0] == MainForm.nameMethod) {
 			        	format = chf.getCreationDate(i) + "_" + i;
 			        } else if (MainForm.nameMethods[1] == MainForm.nameMethod) {
 			        	format = chf.getCreationDate(i);
 			        }
 
+		    	    // Renaming files in dependency which format was chosen.
 		    	    switch (MainForm.nameType) {
 		    	    case "FIRST"   :
 		    	    	soleFile.renameTo(new File(soleFile.getParent() + File.separator + format + "_" + soleFile.getName()));

@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
 /**
- * Creates frame and set its properties.
+ * Progress bar class with STOP button.
  * 
  * @author Maksat E.
  */

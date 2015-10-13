@@ -87,6 +87,7 @@ public class MainForm extends JFrame{
         mf.setIconImage(image);       
         */
         
+        // Menu
         menuBar = new JMenuBar();
         this.setJMenuBar(menuBar);
         
@@ -112,12 +113,13 @@ public class MainForm extends JFrame{
 		dirButton.setEnabled(true);
 		mPanel.add(dirButton);
 		
+		
+		// Left panel
 		leftPanel = new JPanel();
 		leftPanel.setBorder(BorderFactory.createCompoundBorder(
         BorderFactory.createTitledBorder("Formats"),
         BorderFactory.createEmptyBorder(10,10,10,10)));
 		leftPanel.setBounds(10, 48, 200, 150);
-		
 		
 		jpgCheckBox = new JCheckBox("JPEG");
 		jpgCheckBox.setBounds(25, 80, 150, 32);
@@ -139,7 +141,9 @@ public class MainForm extends JFrame{
 		bmpCheckBox.setSelected(true);
 		isBMP = true;
 		mPanel.add(bmpCheckBox);
+
 		
+		// Right panel
 		rightPanel = new JPanel();
 		rightPanel.setBorder(BorderFactory.createCompoundBorder(
         BorderFactory.createTitledBorder("File name"),
@@ -167,7 +171,9 @@ public class MainForm extends JFrame{
 		groupRadio.add(firstRadioButton);
 		groupRadio.add(replaceRadioButton);
 		groupRadio.add(lastRadioButton);
+
 		
+		// Method of forming file name
 		comboLabel = new JLabel("File name creation method");
 		comboLabel.setBounds(15, 198, 400, 32);
 		comboLabel.setEnabled(true);
@@ -180,6 +186,8 @@ public class MainForm extends JFrame{
 		nameMethod = nameComboBox.getSelectedItem().toString();
 		mPanel.add(nameComboBox);
 		
+		
+		// Control buttons
 		closeButton = new JButton("Close");
 		closeButton.setBounds(246, 288, 80, 32);
 		closeButton.setEnabled(true);
@@ -190,13 +198,13 @@ public class MainForm extends JFrame{
 		okButton.setEnabled(false);
 		mPanel.add(okButton);
 		
-		
+		// Late adding panels
 		mPanel.add(leftPanel);
 		mPanel.add(rightPanel);
 		getContentPane().add(mPanel);
 		
 		
-		
+		// Handling actions of controls
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				System.exit(0);
@@ -317,6 +325,8 @@ public class MainForm extends JFrame{
 		});
 	}
 	
+	
+	// Check enable conditions
 	private void checkPreparation() {
 		if (pathTextField.getText().length() > 0 &&
 				(jpgCheckBox.isSelected() || 

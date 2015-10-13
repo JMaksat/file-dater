@@ -4,7 +4,7 @@ import java.io.File;
 import java.nio.file.Path;
 
 /**
- * Creates frame and set its properties.
+ * Variables and methods to work with files.
  * 
  * @author Maksat E.
  */
@@ -39,6 +39,7 @@ public class DirectoryHandle {
 		return filesArray[number];
 	}
 	
+	// This method has to be executed before the getFileName method.
 	public static void addCreationDate(String dateCreated) {
 		
 		datesArray[filesNumber] = dateCreated;
