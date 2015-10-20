@@ -41,7 +41,6 @@ public class ChooseForm extends JDialog {
 	private JList<String>    rightList;
 	private DefaultListModel<String> modelList;
 	private String[]         arrayList;
-	private String[]         arrayDates;
 	
 	private final String     TITLE;
 	private final int        VISIBLE_ROW_COUNT = 10;
@@ -69,7 +68,6 @@ public class ChooseForm extends JDialog {
 			DirectoryHandle.cleanArrays();
 			FileListingVisitor.runFileListingVisitor(DirectoryHandle.getPath().toString());
 			arrayList  = new String[DirectoryHandle.getFilesNumber() + 1];
-			arrayDates = new String[DirectoryHandle.getFilesNumber() + 1];
 			modelList = new DefaultListModel<>();
 		} catch (IOException e1) {
 			JOptionPane.showMessageDialog(null, "Failed to get files list! Program will be closed!", TITLE, JOptionPane.PLAIN_MESSAGE);
@@ -252,7 +250,4 @@ public class ChooseForm extends JDialog {
 		return DirectoryHandle.getPath().toString() + File.separator + rightList.getModel().getElementAt(k);
 	}
 	
-	public String getCreationDate(int k) {
-		return arrayDates[k];
-	}	
 }
