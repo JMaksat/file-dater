@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JOptionPane;
 import javax.swing.DefaultListModel;
+
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.awt.event.ActionEvent;
@@ -79,21 +81,18 @@ public class ChooseForm extends JDialog {
 			
 			if (DirectoryHandle.getFileName(i).toString().toLowerCase().endsWith(".jpg") && MainForm.isJPG) {
 				arrayList[k]  = DirectoryHandle.getFileName(i).toString();
-				arrayDates[k] = DirectoryHandle.getCreationDate(i);
 		        modelList.add(k, DirectoryHandle.getFileName(i).getFileName().toString());
 		        k++;
 			}
 			
 			if (DirectoryHandle.getFileName(i).toString().toLowerCase().endsWith(".png") && MainForm.isPNG) {
 				arrayList[k]  = DirectoryHandle.getFileName(i).toString();
-				arrayDates[k] = DirectoryHandle.getCreationDate(i);
 				modelList.add(k, DirectoryHandle.getFileName(i).getFileName().toString());
 				k++;
 			}
 			
 			if (DirectoryHandle.getFileName(i).toString().toLowerCase().endsWith(".bmp") && MainForm.isBMP) {
 				arrayList[k]  = DirectoryHandle.getFileName(i).toString();
-				arrayDates[k] = DirectoryHandle.getCreationDate(i);
 				modelList.add(k, DirectoryHandle.getFileName(i).getFileName().toString());
 				k++;
 			}				
@@ -250,7 +249,7 @@ public class ChooseForm extends JDialog {
 	}
 	
 	public String getFileName(int k) {
-		return arrayList[k];
+		return DirectoryHandle.getPath().toString() + File.separator + rightList.getModel().getElementAt(k);
 	}
 	
 	public String getCreationDate(int k) {
