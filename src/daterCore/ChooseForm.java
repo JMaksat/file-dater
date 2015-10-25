@@ -40,6 +40,7 @@ public class ChooseForm extends JDialog {
 	private JList<String>    leftList;
 	private JList<String>    rightList;
 	private DefaultListModel<String> modelList;
+	private DefaultListModel<String> pathList;
 	private String[]         arrayList;
 	
 	private final String     TITLE;
@@ -69,6 +70,7 @@ public class ChooseForm extends JDialog {
 			FileListingVisitor.runFileListingVisitor(DirectoryHandle.getPath().toString());
 			arrayList  = new String[DirectoryHandle.getFilesNumber() + 1];
 			modelList = new DefaultListModel<>();
+			pathList = new DefaultListModel<>();
 		} catch (IOException e1) {
 			JOptionPane.showMessageDialog(null, "Failed to get files list! Program will be closed!", TITLE, JOptionPane.PLAIN_MESSAGE);
 			System.exit(0);
@@ -80,18 +82,21 @@ public class ChooseForm extends JDialog {
 			if (DirectoryHandle.getFileName(i).toString().toLowerCase().endsWith(".jpg") && MainForm.isJPG) {
 				arrayList[k]  = DirectoryHandle.getFileName(i).toString();
 		        modelList.add(k, DirectoryHandle.getFileName(i).getFileName().toString());
+		        pathList.add(k, DirectoryHandle.getFileName(i).getParent().toString());
 		        k++;
 			}
 			
 			if (DirectoryHandle.getFileName(i).toString().toLowerCase().endsWith(".png") && MainForm.isPNG) {
 				arrayList[k]  = DirectoryHandle.getFileName(i).toString();
 				modelList.add(k, DirectoryHandle.getFileName(i).getFileName().toString());
+				pathList.add(k, DirectoryHandle.getFileName(i).getParent().toString());
 				k++;
 			}
 			
 			if (DirectoryHandle.getFileName(i).toString().toLowerCase().endsWith(".bmp") && MainForm.isBMP) {
 				arrayList[k]  = DirectoryHandle.getFileName(i).toString();
 				modelList.add(k, DirectoryHandle.getFileName(i).getFileName().toString());
+				pathList.add(k, DirectoryHandle.getFileName(i).getParent().toString());
 				k++;
 			}				
 		}
@@ -247,7 +252,7 @@ public class ChooseForm extends JDialog {
 	}
 	
 	public String getFileName(int k) {
-		return DirectoryHandle.getPath().toString() + File.separator + rightList.getModel().getElementAt(k);
+		return pathList.getElementAt(k) + File.separator + rightList.getModel().getElementAt(k);
 	}
 	
 }
